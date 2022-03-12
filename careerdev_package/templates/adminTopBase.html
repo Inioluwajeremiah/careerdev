@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}CareerDev | Admin{% endblock %}</title>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <link rel="stylesheet" href="../static/base.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header id="header" class="myheader">
+      <a href="" class="logo">Career<span>Dev</span></a>
+      {% if user.is_authenticated %}
+      <div class="topnav" id="myTopnav">
+        <a href="/84bd27f938b67f470da3231c14b3448f/adminPosts">Post</a>
+        <a href="/84bd27f938b67f470da3231c14b3448f/ad_users">Admin User</a>
+        <a href="/logout">Logout</a>
+        <!-- <a href="#register" class="li">Sign up</a> -->
+        {% else %}
+        <a href="/login" class="li">Login</a>
+        {% endif %}
+      </div>
+
+      <a onclick="toggleSearch()" class="search-icon"
+        >search<i class="fa fa-search"></i
+      ></a>
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()"
+        >&#9776;</a
+      >
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %} {% if category ==
+    'success' %}
+    <div class="alert-div success" id="alert-div">
+      <div class="alert-text">{{ message }}</div>
+      <div class="close-alert" id="close-alert" onclick="closeAlert()">
+        &times;
+      </div>
+    </div>
+    {% else %}
+    <div class="alert-div error" id="alert-div">
+      <div class="alert-text">{{ message }}</div>
+      <div class="close-alert" id="close-alert" onclick="closeAlert()">
+        &times;
+      </div>
+    </div>
+    {% endif %} {% endfor %} {% endif %} {% endwith %} {% block content %}
+    {%endblock %}
+
+    <footer>
+      <div class="flex-footer">
+        <div class="column">
+          <a href="/" class="footer-logo">Career<span>Dev</span></a>
+          <p>Ephphathagc@gmail.com</p>
+          <p></p>
+        </div>
+        <div class="column">
+          <li><a href="">GA</a></li>
+          <li><a href="">Internship</a></li>
+          <li><a href="">post-doc</a></li>
+          <li><a href="">Scholarship</a></li>
+        </div>
+        <div class="column">
+          <p>Developed & Managed by EphphathaGC</p>
+          <p>C 2022</p>
+        </div>
+      </div>
+    </footer>
+    <script src="../static/index.js"></script>
+  </body>
+</html>

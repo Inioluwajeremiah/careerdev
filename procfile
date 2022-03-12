@@ -1,0 +1,1 @@
+web: gunicorn careerdev_package.app:app

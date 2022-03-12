@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}CareerDev | Home{% endblock %}</title>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <link rel="stylesheet" href="../static/base.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header id="header" class="myheader">
+      <a href="" class="logo">Career<span>Dev</span></a>
+      <div class="topnav" id="myTopnav">
+        {% if user.is_authenticated %}
+        <a href="/59b1a640e436ba17c3454d935f9b6038/postform">Add Post</a>
+        <a href="/59b1a640e436ba17c3454d935f9b6038/ad_posts">View Posts</a>
+        <a href="/logout">Logout</a>
+        <!-- <a href="#register" class="li">Sign up</a> -->
+        {% else %}
+        <a href="/login" class="li">Login</a>
+        {% endif %}
+      </div>
+
+      <a onclick="toggleSearch()" class="search-icon"
+        >search<i class="fa fa-search"></i
+      ></a>
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()"
+        >&#9776;</a
+      >
+    </header>
+    <div class="filter-div" id="filter-div">
+      <form
+        action="/59b1a640e436ba17c3454d935f9b6038/search"
+        method="POST"
+        id="admin-filter-div"
+        class="filter-sub-div"
+      >
+        <input type="text" name="adm-search-text" placeholder="Search" />
+        <select name="admin-filter" id="admin-filter">
+          <option selected disabled value="" class="option">Filter by</option>
+          <option value="App. startdate" class="option">App. startdate</option>
+          <option value="App. deadline" class="option">App. enddate</option>
+          <option value="App. deadline" class="option">App. deadline</option>
+          <option value="App. fee" class="option">App. fee status</option>
+          <option value="Category" class="option">Category</option>
+          <option value="Country" class="option">Country</option>
+          <option value="Course" class="option">Course</option>
+          <option value="Department" class="option">Department</option>
+          <option value="Description" class="option">Description</option>
+          <option value="Duration" class="option">Duration</option>
+          <option value="Faculty" class="option">Faculty</option>
+          <option value="Institution" class="option">Institution</option>
+          <option value="Funding type" class="option">Funding type</option>
+          <option value="Funding institution" class="option">
+            Funding institution
+          </option>
+          <option value="Subtitle" class="option">Subtitle</option>
+          <option value="TItle" class="option">Title</option>
+          <option value="URL" class="option">URL</option>
+        </select>
+
+        <input type="submit" value="Search" name="adm-search" />
+      </form>
+    </div>
+    {% if user.is_authenticated %} {% endif %} {% with messages =
+    get_flashed_messages(with_categories=true) %} {% if messages %} {% for
+    category, message in messages %} {% if category == 'success' %}
+    <div class="alert-div success" id="alert-div">
+      <div class="alert-text">{{ message }}</div>
+      <div class="close-alert" id="close-alert" onclick="closeAlert()">
+        &times;
+      </div>
+    </div>
+    {% else %}
+    <div class="alert-div error" id="alert-div">
+      <div class="alert-text">{{ message }}</div>
+      <div class="close-alert" id="close-alert" onclick="closeAlert()">
+        &times;
+      </div>
+    </div>
+    {% endif %} {% endfor %} {% endif %} {% endwith %} {% block content %}
+    {%endblock %}
+
+    <footer>
+      <div class="flex-footer">
+        <div class="column">
+          <a href="/" class="footer-logo">Career<span>Dev</span></a>
+          <p>Ephphathagc@gmail.com</p>
+          <p></p>
+        </div>
+        <div class="column">
+          <li><a href="">GA</a></li>
+          <li><a href="">Internship</a></li>
+          <li><a href="">post-doc</a></li>
+          <li><a href="">Scholarship</a></li>
+        </div>
+        <div class="column">
+          <p>Developed & Managed by EphphathaGC</p>
+          <p>C 2022</p>
+        </div>
+      </div>
+    </footer>
+    <script src="../static/index.js"></script>
+  </body>
+</html>

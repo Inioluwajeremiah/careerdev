@@ -1,0 +1,81 @@
+{% extends "base.html" %} {% block title %}CareerDev | Post-doc{% endblock %} {%
+block content %}
+<section class="_section" id="scholarships">
+  <div class="title white" id="sch-title">
+    <h2 class="titleText"><span>Post</span> Doc.</h2>
+    <p>Get the latest update on Post Doctarate opportunities</p>
+  </div>
+  <div class="content">
+    {% for post_doc_post in post_doc_posts.items %}
+    <div class="box">
+      <div class="imgBx">
+        <div class="text">
+          <h3>
+            <span class="box-title">{{post_doc_post.title}}</span> <br />
+            <p><span>Country:</span> &nbsp; {{post_doc_post.country}}</p>
+            <p>
+              <span>Institution:</span> &nbsp; {{post_doc_post.institution}}
+            </p>
+            <p><span>Course:</span> &nbsp; {{post_doc_post.course}}</p>
+            <p><span>Level:</span> &nbsp; {{post_doc_post.level}}</p>
+            <p><span>App. fee:</span> &nbsp; {{post_doc_post.appfee}}</p>
+            <p><span>Duration:</span> &nbsp; {{post_doc_post.duration}}</p>
+            <p>
+              <span>App. Start date:</span> &nbsp; {{post_doc_post.duration}}
+            </p>
+            <p><span>App. Deadline:</span> &nbsp; {{post_doc_post.duration}}</p>
+            <p>
+              <span>URL:</span>
+              <a href="{{post_doc_post.app_url}}"
+                >{{post_doc_post.app_short_url}}</a
+              >
+            </p>
+            <a href="/post_doc/details/{{post_doc_post.id}}" class="view-btn"
+              >View Details</a
+            >
+          </h3>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    <div class="title">
+      <!-- <a href="/post_doc" class="btn">View All</a> -->
+    </div>
+  </div>
+
+  <div class="pagination-div">
+    <a
+      href="{{url_for('post_doc.all_post_doc_posts', page=post_doc_posts.prev_num)}}"
+      class="pagination-btn inactive-btn {% if post_doc_posts.page == 1 %}disabled{% endif %}"
+    >
+      &laquo;</a
+    >
+    {% for page_num in post_doc_posts.iter_pages (left_edge=1, right_edge=1,
+    left_current=1, right_current=2) %} {% if page_num %} {% if
+    post_doc_posts.page== page_num %}
+    <a
+      href="{{url_for('post_doc.all_post_doc_posts', page=page_num)}}"
+      class="pagination-btn active-btn"
+      >{{page_num}}</a
+    >
+
+    {% else %}
+    <a
+      href="{{ url_for('post_doc.all_post_doc_posts', page=page_num) }}"
+      class="pagination-btn inactive-btn"
+    >
+      {{ page_num }}
+    </a>
+    {% endif %} {% else %} ... {% endif %} {% endfor %}
+    <a
+      href="{{ url_for('post_doc.all_post_doc_posts', page=post_doc_posts.next_num) }}"
+      class="pagination-btn inactive-btn {% if post_doc_posts.page == post_doc_posts.pages %}disabled{% endif %}"
+    >
+      &raquo;
+    </a>
+    <p class="pagination-descr">
+      Showing page {{ post_doc_posts.page }} of {{ post_doc_posts.pages }}
+    </p>
+  </div>
+</section>
+{% endblock %}

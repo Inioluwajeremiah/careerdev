@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form  action="/login" method="POST" class="contactForm" id="contact-form" enctype=multipart/form-data>
+    <p class="sub-title">Admin Login</p>
+    <div class="inputBox">
+        <input type="email" name="email" placeholder="Email" id="email" />
+    </div>
+    <div class="inputBox">
+        <input type="password" name="password" placeholder="Password" id="password" />
+    </div>
+    <br>
+    <div class="inputBox">
+        <input type="submit" value="Login" name="login" />
+    </div> <br>
+    <div class="inputBox">
+        <p>Not yet registered? <a href="/register">Register here</a> </p>
+    </div>
+                            
+</form> 
+{% endblock %}

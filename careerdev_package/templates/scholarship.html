@@ -1,0 +1,75 @@
+{% extends "base.html" %} {% block title %}CareerDev | Scholarships{% endblock
+%} {% block content %}
+<section class="_section" id="scholarships">
+  <div class="title white" id="sch-title">
+    <h2 class="titleText"><span>S</span>cholarships</h2>
+    <p>Get the latest update on Scholarship opportunities</p>
+  </div>
+  <div class="content">
+    {% for sch_posts in allSchPosts.items %}
+    <div class="box">
+      <div class="imgBx">
+        <div class="text">
+          <h3>
+            <span class="box-title">{{sch_posts.title}}</span> <br />
+            <p><span>Country:</span> &nbsp; {{sch_posts.country}}</p>
+            <p><span>Institution:</span> &nbsp; {{sch_posts.institution}}</p>
+            <p><span>Course:</span> &nbsp; {{sch_posts.course}}</p>
+            <p><span>Level:</span> &nbsp; {{sch_posts.level}}</p>
+            <p><span>App. fee:</span> &nbsp; {{sch_posts.appfee}}</p>
+            <p><span>Duration:</span> &nbsp; {{sch_posts.duration}}</p>
+            <p><span>App. Start date:</span> &nbsp; {{sch_posts.duration}}</p>
+            <p><span>App. Deadline:</span> &nbsp; {{sch_posts.duration}}</p>
+            <p>
+              <span>URL:</span>
+              <a href="{{sch_posts.app_url}}">{{sch_posts.app_short_url}}</a>
+            </p>
+            <a href="/scholarship/details/{{sch_posts.id}}" class="view-btn"
+              >View Details</a
+            >
+          </h3>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    <div class="title">
+      <!-- <a href="/sch_post" class="btn">View All</a> -->
+    </div>
+  </div>
+
+  <div class="pagination-div">
+    <a
+      href="{{url_for('sch_post.all_sch_post', page=allSchPosts.prev_num)}}"
+      class="pagination-btn inactive-btn {% if allSchPosts.page == 1 %}disabled{% endif %}"
+    >
+      &laquo;</a
+    >
+    {% for page_num in allSchPosts.iter_pages (left_edge=1, right_edge=1,
+    left_current=1, right_current=2) %} {% if page_num %} {% if
+    allSchPosts.page== page_num %}
+    <a
+      href="{{url_for('sch_post.all_sch_post', page=page_num)}}"
+      class="pagination-btn active-btn"
+      >{{page_num}}</a
+    >
+
+    {% else %}
+    <a
+      href="{{ url_for('sch_post.all_sch_post', page=page_num) }}"
+      class="pagination-btn inactive-btn"
+    >
+      {{ page_num }}
+    </a>
+    {% endif %} {% else %} ... {% endif %} {% endfor %}
+    <a
+      href="{{ url_for('sch_post.all_sch_post', page=allSchPosts.next_num) }}"
+      class="pagination-btn inactive-btn {% if allSchPosts.page == allSchPosts.pages %}disabled{% endif %}"
+    >
+      &raquo;
+    </a>
+    <p class="pagination-descr">
+      Showing page {{ allSchPosts.page }} of {{ allSchPosts.pages }}
+    </p>
+  </div>
+</section>
+{% endblock %}

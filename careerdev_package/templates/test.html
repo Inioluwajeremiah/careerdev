@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    {{grad_ast_post}}
+    <div class="content">
+      <div class="box">
+        <div class="imgBx">
+          <div class="text">
+            <h3>
+              <span class="box-title">{{grad_ast_post.title}}</span> <br />
+              {{grad_ast_post.ga}} <br />
+              {{grad_ast_post.country}} <br />
+              {{grad_ast_post.fund_type}} <br />
+              <a href="#" class="view-btn">View Details</a>
+            </h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="title">
+        <a href="department.html" class="btn">View All</a>
+      </div>
+    </div>
+  </body>
+</html>
+
+<div>{{search_query}}</div>
+{% if allSchPosts.items %}
+<div class="content">
+  {% for sch_posts in allSchPosts.items %}
+  <div class="box">
+    <div class="imgBx">
+      <div class="text">
+        <h3>
+          <span class="box-title">{{sch_posts.title}}</span> <br />
+          <p><span>Country:</span> &nbsp; {{sch_posts.country}}</p>
+          <p><span>Institution:</span> &nbsp; {{sch_posts.institution}}</p>
+          <p><span>Course:</span> &nbsp; {{sch_posts.course}}</p>
+          <p><span>Level:</span> &nbsp; {{sch_posts.level}}</p>
+          <p><span>App. fee:</span> &nbsp; {{sch_posts.appfee}}</p>
+          <p><span>Duration:</span> &nbsp; {{sch_posts.duration}}</p>
+          <p><span>App. Start date:</span> &nbsp; {{sch_posts.duration}}</p>
+          <p><span>App. Deadline:</span> &nbsp; {{sch_posts.duration}}</p>
+          <p>
+            <span>URL:</span>
+            <a href="{{sch_posts.app_url}}">{{sch_posts.app_short_url}}</a>
+          </p>
+          <a href="/details/{{sch_posts.id}}" class="view-btn">View Details</a>
+        </h3>
+      </div>
+    </div>
+  </div>
+  {% endfor %} {% else %}
+  <div class="title">
+    No matching result or input search field
+    <!-- <a href="/sch_post" class="btn">View All</a> -->
+  </div>
+  {% endif %}
+</div>
+
+
+<div class="related-post">
+  <div class="title white" id="sch-title">
+    <h2 class="titleText">View related posts</h2>
+  </div>
+  <div class="content">
+    {% if related_posts %}
+    {% for related_post in related_posts %}
+    <div class="box">
+      <div class="imgBx">
+        <div class="text">
+          <h3>
+            <h3>
+              {% if rel_sp_1 %}
+              <span class="box-title">{{rel_sp_1.title}}</span> <br />
+              <p><span>Country:</span> &nbsp; {{rel_sp_1.country}}</p>
+              <p><span>Institution:</span> &nbsp; {{rel_sp_1.institution}}</p>
+              <p><span>Course:</span> &nbsp; {{rel_sp_1.course}}</p>
+              <p><span>Level:</span> &nbsp; {{rel_sp_1.level}}</p>
+              <p><span>App. fee:</span> &nbsp; {{rel_sp_1.appfee}}</p>
+              <p><span>Duration:</span> &nbsp; {{rel_sp_1.duration}}</p>
+              <p><span>App. Start date:</span> &nbsp; {{rel_sp_1.duration}}</p>
+              <p><span>App. Deadline:</span> &nbsp; {{rel_sp_1.duration}}</p>
+              <p>
+                <span>URL:</span>
+                <a href="{{rel_sp_1.app_url}}">{{rel_sp_1.app_short_url}}</a>
+              </p>
+              <a href="/details/{{rel_sp_1.id}}" class="view-btn">View Details</a>
+              {% else %}
+              No related post
+              {% endif %}
+            </h3> 
+        </div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="imgBx">
+        <div class="text">
+          <h3>
+            {% if rel_sp_2 %}
+            <span class="box-title">{{rel_sp_2.title}}</span> <br />
+            <p><span>Country:</span> &nbsp; {{rel_sp_2.country}}</p>
+            <p><span>Institution:</span> &nbsp; {{rel_sp_2.institution}}</p>
+            <p><span>Course:</span> &nbsp; {{rel_sp_2.course}}</p>
+            <p><span>Level:</span> &nbsp; {{rel_sp_2.level}}</p>
+            <p><span>App. fee:</span> &nbsp; {{rel_sp_2.appfee}}</p>
+            <p><span>Duration:</span> &nbsp; {{rel_sp_2.duration}}</p>
+            <p><span>App. Start date:</span> &nbsp; {{rel_sp_2.duration}}</p>
+            <p><span>App. Deadline:</span> &nbsp; {{rel_sp_2.duration}}</p>
+            <p>
+              <span>URL:</span>
+              <a href="{{rel_sp_2.app_url}}">{{rel_sp_2.app_short_url}}</a>
+            </p>
+            <a href="/details/{{rel_sp_2.id}}" class="view-btn">View Details</a>
+            {% else %}
+            No related post
+            {% endif %}
+          </h3>
+        </div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="imgBx">
+        <div class="text"> 
+          <h3>
+            {% if rel_sp_3 %}
+            <span class="box-title">{{rel_sp_3.title}}</span> <br />
+            <p><span>Country:</span> &nbsp; {{rel_sp_3.country}}</p>
+            <p><span>Institution:</span> &nbsp; {{rel_sp_3.institution}}</p>
+            <p><span>Course:</span> &nbsp; {{rel_sp_3.course}}</p>
+            <p><span>Level:</span> &nbsp; {{rel_sp_3.level}}</p>
+            <p><span>App. fee:</span> &nbsp; {{rel_sp_3.appfee}}</p>
+            <p><span>Duration:</span> &nbsp; {{rel_sp_3.duration}}</p>
+            <p><span>App. Start date:</span> &nbsp; {{rel_sp_3.duration}}</p>
+            <p><span>App. Deadline:</span> &nbsp; {{rel_sp_3.duration}}</p>
+            <p>
+              <span>URL:</span>
+              <a href="{{rel_sp_3.app_url}}">{{rel_sp_3.app_short_url}}</a>
+            </p>
+            <a href="/details/{{rel_sp_3.id}}" class="view-btn">View Details</a>
+            {% else %}
+            No related post
+            {% endif %}
+          </h3>   
+        </div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="imgBx">
+        <div class="text">
+          <h3>
+            {% if rel_sp_4 %}
+            <span class="box-title">{{rel_sp_4.title}}</span> <br />
+            <p><span>Country:</span> &nbsp; {{rel_sp_4.country}}</p>
+            <p><span>Institution:</span> &nbsp; {{rel_sp_4.institution}}</p>
+            <p><span>Course:</span> &nbsp; {{rel_sp_4.course}}</p>
+            <p><span>Level:</span> &nbsp; {{rel_sp_4.level}}</p>
+            <p><span>App. fee:</span> &nbsp; {{rel_sp_4.appfee}}</p>
+            <p><span>Duration:</span> &nbsp; {{rel_sp_4.duration}}</p>
+            <p><span>App. Start date:</span> &nbsp; {{rel_sp_4.duration}}</p>
+            <p><span>App. Deadline:</span> &nbsp; {{rel_sp_4.duration}}</p>
+            <p>
+              <span>URL:</span>
+              <a href="{{rel_sp_4.app_url}}">{{rel_sp_4.app_short_url}}</a>
+            </p>
+            <a href="/details/{{rel_sp_4.id}}" class="view-btn">View Details</a>
+            {% else %}
+            No related post
+            {% endif %}
+          </h3>
+        </div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="imgBx">
+        <div class="text">
+          <h3>
+            {% if rel_sp_5 %}
+            <span class="box-title">{{rel_sp_5.title}}</span> <br />
+            <p><span>Country:</span> &nbsp; {{rel_sp_5.country}}</p>
+            <p><span>Institution:</span> &nbsp; {{rel_sp_5.institution}}</p>
+            <p><span>Course:</span> &nbsp; {{rel_sp_5.course}}</p>
+            <p><span>Level:</span> &nbsp; {{rel_sp_5.level}}</p>
+            <p><span>App. fee:</span> &nbsp; {{rel_sp_5.appfee}}</p>
+            <p><span>Duration:</span> &nbsp; {{rel_sp_5.duration}}</p>
+            <p><span>App. Start date:</span> &nbsp; {{rel_sp_5.duration}}</p>
+            <p><span>App. Deadline:</span> &nbsp; {{rel_sp_5.duration}}</p>
+            <p>
+              <span>URL:</span>
+              <a href="{{rel_sp_5.app_url}}">{{rel_sp_5.app_short_url}}</a>
+            </p>
+            <a href="/details/{{rel_sp_5.id}}" class="view-btn">View Details</a>
+            {% else %}
+            No related post
+            {% endif %}
+          </h3>
+      
+        </div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="imgBx">
+        <div class="text">
+          <h3>
+            {% if rel_sp_6 %}
+            <span class="box-title">{{rel_sp_6.title}}</span> <br />
+              <p><span>Country:</span> &nbsp; {{rel_sp_6.country}}</p>
+              <p><span>Institution:</span> &nbsp; {{rel_sp_6.institution}}</p>
+              <p><span>Course:</span> &nbsp; {{rel_sp_6.course}}</p>
+              <p><span>Level:</span> &nbsp; {{rel_sp_6.level}}</p>
+              <p><span>App. fee:</span> &nbsp; {{rel_sp_6.appfee}}</p>
+              <p><span>Duration:</span> &nbsp; {{rel_sp_6.duration}}</p>
+              <p><span>App. Start date:</span> &nbsp; {{rel_sp_6.duration}}</p>
+              <p><span>App. Deadline:</span> &nbsp; {{rel_sp_6.duration}}</p>
+              <p>
+                <span>URL:</span>
+                <a href="{{rel_sp_6.app_url}}">{{rel_sp_6.app_short_url}}</a>
+              </p>
+              <a href="/details/{{rel_sp_6.id}}" class="view-btn">View Details</a>
+              {% else %}
+              No related post
+              {% endif %}
+           </h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!--ends related post-->
+
+
+<form action="/filter" method="POST" class="filter-options">
+  <div class="check-box-option">
+    <input type="checkbox" />
+    <p>Scale</p>
+  </div>
+  <div class="check-box-option">
+    <input type="checkbox" />
+    <p>Scale</p>
+  </div>
+  <div class="check-box-option">
+    <input type="checkbox" />
+    <p>Scale</p>
+  </div>
+  <li>duration in months</li>
+  <li>date(startdate or deadline)</li>
+  <li>country</li>
+  <li>faculty</li>
+  <li>department</li>
+  <li>course</li>
+  <li>level</li>
+  <li>appfee status</li>
+  <li>post_cat</li>
+  <li>fund_type</li>
+  <li>fund_inst</li>
+</form>
+
+<form action="/search" method="POST" class="filter-sub-div">
+  <input type="text" name="user-search" placeholder="Search" />
+  <input type="submit" value="Search" name="user-search-btn" onclick="searchPaginate()" />
+</form>
+
+ <!-- <form action="/search" method="POST" class="filter-sub-div">
+        <input type="text" name="user-search" placeholder="Search" />
+        <input
+          type="submit"
+          value="Search"
+          name="user-search-btn"
+          onclick="searchPaginate()"
+        />
+      </form> -->
+
+      <div class="filter-div" id="filter-div">
+        <div class="filter-sub-div">
+          <input type="text" placeholder="Search" id="user-search" />
+          <input type="submit" value="Search" onclick="searchPaginate()" />
+          
+        </div>
+      
+      </div>
+
+
+      <form
+  action="/84bd27f938b67f470da3231c14b3448f/ad_users/search"
+  method="POST"
+  class="contactForm"
+>
+  <div class="inputBox">
+    <input
+      type="text"
+      name="adtu-search-text"
+      placeholder="Search by username"
+    />
+  </div>
+  <div class="inputBox">
+    <input type="submit" value="Search" name="adtu-search" />
+  </div>
+</form>

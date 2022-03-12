@@ -1,0 +1,62 @@
+{% extends "base.html" %} {% block title %}CareerDev | Search{% endblock %} {%
+block content %}
+<link rel="stylesheet" href="../static/base.css" />
+<section onload="searchPaginate()" class="_section" id="search-section">
+  <div class="title white" id="sch-title">
+    <h2 class="titleText">Search results for <span>{{userSearch}}</span></h2>
+  </div>
+  {% if search_query %}
+
+  <div class="content">
+    {% for search_item in search_query %}
+    <div class="box">
+      <div class="imgBx">
+        <div class="text">
+          <h3>
+            <span class="box-title">{{search_item[0]}}</span> <br />
+            <p><span>Country:</span> &nbsp; {{search_item[2]}}</p>
+            <p><span>Institution:</span> &nbsp; {{search_item[3]}}</p>
+            <p><span>Course:</span> &nbsp; {{search_item[4]}}</p>
+            <p><span>Level:</span> &nbsp; {{search_item[5]}}</p>
+            <p><span>App. fee:</span> &nbsp; {{search_item[6]}}</p>
+            <p><span>Duration:</span> &nbsp; {{search_item[7]}}</p>
+            <p><span>App. Start date:</span> &nbsp; {{search_item[8]}}</p>
+            <p><span>App. Deadline:</span> &nbsp; {{search_item[9]}}</p>
+            <p>
+              <span>URL:</span>
+              <a href="{{search_item[21]}}">{{search_item[21]}}</a>
+            </p>
+            <a href="/details/{{search_item[0]}}" class="view-btn"
+              >View Details</a
+            >
+          </h3>
+        </div>
+      </div>
+    </div>
+    {% endfor %} {% else %}
+    <div class="title">
+      No matching result or input search field
+      <!-- <a href="/sch_post" class="btn">View All</a> -->
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<section class="pagination-section" id="scholarship-pagination">
+  <div class="pagination-div">
+    <ul id="myul">
+      <!-- <li class="nbtn prev"><span><i class="fas fa-angle-left"></i></span> PREV</li>
+            <li class="numb active"><span>1</span></li>
+            <li class="numb"><span>2</span></li>
+            <li class="dots"><span>...</span></li>
+            <li class="numb"><span>4</span></li>
+            <li class="numb"><span>5</span></li>
+            <li class="dots"><span>...</span></li>
+            <li class="numb"><span>7</span></li>
+            <li class="nbtn next"><span>NEXT <i class="fas fa-angle-right"></i></span></li> -->
+    </ul>
+  </div>
+</section>
+<script src="../static/jquery.min.js"></script>
+
+{% endblock %}

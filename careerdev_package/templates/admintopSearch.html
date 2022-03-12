@@ -1,0 +1,96 @@
+{% extends "adminTopBase.html" %} {% block content %}
+<p class="wlc-text">Welcome <br />{{ current_user.username }}</p>
+<p class="sub-title success-message sms">Search results</p>
+<table id="admin-scholarship-table">
+  <thead>
+    <tr>
+      <th>S/N</th>
+      <th>Post cat.</th>
+      <th>Title</th>
+      <th>Subtitle</th>
+      <th>Country</th>
+      <th>Institution</th>
+      <th>Faculty</th>
+      <th>Department</th>
+      <th>Course</th>
+      <th>Level</th>
+      <th>Description</th>
+      <th>Duration</th>
+      <th>App. fee</th>
+      <th>Url</th>
+      <th>GA type</th>
+      <th>Edit/Del</th>
+    </tr>
+  </thead>
+  <tbody id="admin-table-body">
+    {% for post_data in searchResult.items %}
+    <tr>
+      <td>{{post_data.id}}</td>
+      <td>{{post_data.post_cat}}</td>
+      <td>{{post_data.title}}</td>
+      <td>{{post_data.subtitle}}</td>
+      <td>{{post_data.country}}</td>
+      <td>{{post_data.institution}}</td>
+      <td>{{post_data.faculty}}</td>
+      <td>{{post_data.department}}</td>
+      <td>{{post_data.course}}</td>
+      <td>{{post_data.level}}</td>
+      <td>{{post_data.description}}</td>
+      <td>{{post_data.duration}}</td>
+      <td>{{post_data.appfee}}</td>
+      <td>{{post_data.app_url}}</td>
+      <td>{{post_data.fund_type}}</td>
+      <td>{{post_data. ga}}</td>
+      <td>
+        <button class="edit-btn table-btn">
+          <a href="/84bd27f938b67f470da3231c14b3448f/edit/{{post_data.id}}"
+            >Edit</a
+          >
+        </button>
+        <br />
+        <button class="edit-btn table-btn">
+          <a href="/84bd27f938b67f470da3231c14b3448f/delete/{{post_data.id}}"
+            >Edit</a
+          >
+        </button>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<div class="pagination-div">
+  <a
+    href="{{url_for('admintop.adt_search', page=searchResult.prev_num)}}"
+    class="pagination-btn inactive-btn {% if searchResult.page == 1 %}disabled{% endif %}"
+  >
+    &laquo;</a
+  >
+  {% for page_num in searchResult.iter_pages (left_edge=1, right_edge=1,
+  left_current=1, right_current=2) %} {% if page_num %} {% if
+  searchResult.page== page_num %}
+  <a
+    href="{{url_for('admintop.adt_search', page=page_num)}}"
+    class="pagination-btn active-btn"
+    >{{page_num}}</a
+  >
+
+  {% else %}
+  <a
+    href="{{ url_for('admintop.adt_search', page=page_num) }}"
+    class="pagination-btn inactive-btn"
+  >
+    {{ page_num }}
+  </a>
+  {% endif %} {% else %} ... {% endif %} {% endfor %}
+  <a
+    href="{{ url_for('admintop.adt_search', page=searchResult.next_num) }}"
+    class="pagination-btn inactive-btn {% if searchResult.page == searchResult.pages %}disabled{% endif %}"
+  >
+    &raquo;
+  </a>
+  <p class="pagination-descr">
+    Showing page {{ searchResult.page }} of {{ searchResult.pages }}
+  </p>
+</div>
+{% endblock %}

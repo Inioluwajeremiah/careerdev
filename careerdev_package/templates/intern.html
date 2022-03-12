@@ -1,0 +1,75 @@
+{% extends "base.html" %} {% block title %}CareerDev | internships{% endblock %}
+{% block content %}
+<section class="_section" id="scholarships">
+  <div class="title white" id="sch-title">
+    <h2 class="titleText"><span>I</span>nternships</h2>
+    <p>Get the latest update on Internship opportunities</p>
+  </div>
+  <div class="content">
+    {% for intern_post in intern_posts.items %}
+    <div class="box">
+      <div class="imgBx">
+        <div class="text">
+          <h3>
+            <span class="box-title">{{intern_post.title}}</span> <br />
+            <p><span>Country:</span> &nbsp; {{intern_post.country}}</p>
+            <p><span>Institution:</span> &nbsp; {{intern_post.institution}}</p>
+            <p><span>Course:</span> &nbsp; {{intern_post.course}}</p>
+            <p><span>Level:</span> &nbsp; {{intern_post.level}}</p>
+            <p><span>App. fee:</span> &nbsp; {{intern_post.appfee}}</p>
+            <p><span>Duration:</span> &nbsp; {{intern_post.duration}}</p>
+            <p><span>App. Start date:</span> &nbsp; {{intern_post.duration}}</p>
+            <p><span>App. Deadline:</span> &nbsp; {{intern_post.duration}}</p>
+            <p>
+              <span>URL:</span>
+              <a href="{intern_post.app_url}}">{{intern_post.app_short_url}}</a>
+            </p>
+            <a href="/intern/details{{intern_post.id}}" class="view-btn"
+              >View Details</a
+            >
+          </h3>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    <div class="title">
+      <!-- <a href="/intern" class="btn">View All</a> -->
+    </div>
+  </div>
+
+  <div class="pagination-div">
+    <a
+      href="{{url_for('intern.all_intern_post', page=intern_posts.prev_num)}}"
+      class="pagination-btn inactive-btn {% if intern_posts.page == 1 %}disabled{% endif %}"
+    >
+      &laquo;</a
+    >
+    {% for page_num in intern_posts.iter_pages (left_edge=1, right_edge=1,
+    left_current=1, right_current=2) %} {% if page_num %} {% if
+    intern_posts.page== page_num %}
+    <a
+      href="{{url_for('intern.all_intern_post', page=page_num)}}"
+      class="pagination-btn active-btn"
+      >{{page_num}}</a
+    >
+
+    {% else %}
+    <a
+      href="{{ url_for('intern.all_intern_post', page=page_num) }}"
+      class="pagination-btn inactive-btn"
+    >
+      {{ page_num }}
+    </a>
+    {% endif %} {% else %} ... {% endif %} {% endfor %}
+    <a
+      href="{{ url_for('intern.all_intern_post', page=intern_posts.next_num) }}"
+      class="pagination-btn inactive-btn {% if intern_posts.page == intern_posts.pages %}disabled{% endif %}"
+    >
+      &raquo;
+    </a>
+    <p class="pagination-descr">
+      Showing page {{ intern_posts.page }} of {{ intern_posts.pages }}
+    </p>
+  </div>
+</section>
+{% endblock %}

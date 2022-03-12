@@ -1,0 +1,106 @@
+{% extends "adminBase.html" %}
+{% block content %}
+<p class="sub-title">Update Post</p>
+
+<form  action=" /59b1a640e436ba17c3454d935f9b6038/update/{{edit_record.id}}" method="POST" class="contactForm" id="contact-form" enctype=multipart/form-data>
+    <div class="select-box">
+        <select name="upost_cat" id="post_cat">
+            <option value="{{edit_record.post_cat}}" class="option">{{edit_record.post_cat}}</option>
+            <option value="Post Doc" class="option">Post Doc.</option>
+            <option value="Graduate Assistantship" class="option">Grad. Assist.</option>
+            <option value="Scholarship" class="option">Scholarship</option>
+            <option value="Internship" class="option">Internship</option>
+        </select>
+    </div>
+    <div class="inputBox">
+        <input type="text" name="utitle" placeholder='Title' id="title" value="{{edit_record.title}}" />
+        <p class="clear-btn" onclick="posttitle()"> <i class="fa fa-trash" aria-hidden="true"></i></p>  
+    </div>
+    <div class="inputBox">
+        <input type="text" name="usubtitle" placeholder="Subtitle" id="subtitle" value="{{edit_record.subtitle}} "/>
+        <p class="clear-btn" onclick="subtitle()"> <i class="fa fa-trash" aria-hidden="true"></i></p>  
+    </div>
+    <div class="inputBox">
+        <input type="text" value="{{edit_record.country}}" name="ucountry" placeholder="Country" id="country" />
+
+        <p class="clear-btn" onclick="country()"> <i class="fa fa-trash" aria-hidden="true"></i></p>  
+
+    </div>
+    <div class="inputBox">
+        <input type="text" value="{{edit_record.institution}}" name="uinstitution" placeholder="Institution" id="institution" />
+        <p class="clear-btn" onclick="institution()"> <i class="fa fa-trash" aria-hidden="true"></i></p>  
+    </div>
+    <div class="inputBox">
+        <input type="text" value="{{edit_record.faculty}}" name="ufaculty" placeholder="Faculty" id="faculty" />
+        <p class="clear-btn" onclick="faculty()"> <i class="fa fa-trash" aria-hidden="true"></i></p>  
+    </div>
+    <div class="inputBox">
+        <input type="text" value="{{edit_record.department}}" name="udepartment" placeholder="Department" id="department" />
+        <p class="clear-btn" onclick="department()"> <i class="fa fa-trash" aria-hidden="true"></i></p>  
+    </div>
+    <div class="inputBox">
+        <input type="text" value="{{edit_record.course}}" name="ucourse" placeholder="Course" id="course" />
+        <p class="clear-btn" onclick="course()"> <i class="fa fa-trash" aria-hidden="true"></i></p>  
+    </div>
+    <div class="select-box">
+        <select name="level" id="level">
+            <option value="{{level}}" class="option">{{level}}</option>
+            <option value="PhD" class="option">PhD</option>
+            <option value="Masters" class="option">MSc</option>
+            <option value="Under graduate" class="option">Under gradudate</option>
+        </select>
+    </div>
+    <div class="inputBox">
+        <input type="text" value="{{edit_record.level}}" name="ulevel" placeholder="Level" id="level" />
+        <p class="clear-btn" onclick="level()"> <i class="fa fa-trash" aria-hidden="true"></i></p>  
+    </div>
+    <div class="inputBox">
+        <textarea name="udescription" value="{{edit_record.description}}" id="descr" cols="30" rows="10" placeholder="Description">{{edit_record.description}}</textarea>
+        <p class="clear-btn" onclick="description()"> <i class="fa fa-trash" aria-hidden="true"></i></p>  
+    </div>
+    <div class="inputBox">
+        <input type="text" name="uduration" value="{{edit_record.duration}}" placeholder="Duration(months)" id="duration" />
+        <p class="clear-btn" onclick="duration()"> <i class="fa fa-trash" aria-hidden="true"></i></p>  
+    </div>
+    <div class="inputBox">
+        <input type="text" name="uappfee" placeholder="App.fee (amount or waived)" id="appfee" value="{{edit_record.appfee}}" />
+        <p class="clear-btn" onclick="appfee()"> <i class="fa fa-trash" aria-hidden="true"></i></p>  
+    </div>
+    <div class="inputBox">
+        <input type="text" name="uurl" value="{{edit_record.app_url}}" placeholder="URL Link" id="url" />
+        <p class="clear-btn" onclick="url()"> <i class="fa fa-trash" aria-hidden="true"></i></p>  
+    </div>
+    <div class="select-box">
+        <select name="uga" id="ga">
+            <option value={{edit_record.ga}} class="option">{{edit_record.ga}}</option>
+            <option value="Research Assistentship" class="option">RA</option>
+            <option value="Teaching Assistentship" class="option">TA</option>
+        </select>
+    </div>
+    <div class="select-box">
+        <select name="ufund_type" id="fund_type">
+            <option value={{edit_record.fund_type}} class="option">{{edit_record.fund_type}}</option>
+            <option value="Fully funded" class="option">Fully funded</option>
+            <option value="Partially funded" class="option">Partially funded</option>
+            <option value="Tuition only">Tuition only</option>
+        </select>
+    </div>
+    <div class="inputBox">
+        <input type="text" name="fund_inst" value="{{edit_record.fund_inst}}" placeholder="Funding Institution" id="fund_inst" />
+        <p class="clear-btn" onclick="fundInst()"> <i class="fa fa-trash" aria-hidden="true"></i></p>  
+    </div>
+    <div class="inputBox">
+        <input type="date" name="app_sd" value="{{edit_record.app_sd}}" placeholder="Application startdate" id="app_sd" />
+        <p class="clear-btn" onclick="app_sd()"> <i class="fa fa-trash" aria-hidden="true"></i></p>  
+    </div>
+    <div class="inputBox">
+        <input type="date" name="app_ed" value="{{edit_record.app_ed}}" placeholder="Application enddate" id="app_ed" />
+        <p class="clear-btn" onclick="app_ed()"> <i class="fa fa-trash" aria-hidden="true"></i></p>  
+    </div>
+    <div class="inputBox">
+        <input type="submit" value="Update" name="update" />
+    </div> <br>
+                            
+</form> 
+
+{% endblock %}

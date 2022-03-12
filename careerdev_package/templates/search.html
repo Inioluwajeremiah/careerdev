@@ -1,0 +1,85 @@
+{% extends "base.html" %} {% block title %}CareerDev | Scholarships{% endblock
+%} {% block content %}
+<section onload="searchPaginate()" class="_section" id="scholarships">
+  <div class="title white" id="sch-title">
+    <h2 class="titleText">Search results for <span>{{searchText}}</span></h2>
+  </div>
+  {% if searchResult %}
+
+  <div class="content">
+    {% for search_item in searchResult.items %}
+    <div class="box">
+      <div class="imgBx">
+        <div class="text">
+          <h3>
+            <span class="box-title">{{search_item.title}}</span> <br />
+            <p><span>Country:</span> &nbsp; {{search_item.country}}</p>
+            <p><span>Institution:</span> &nbsp; {{search_item.institution}}</p>
+            <p><span>Course:</span> &nbsp; {{search_item.course}}</p>
+            <p><span>Level:</span> &nbsp; {{search_item.level}}</p>
+            <p><span>App. fee:</span> &nbsp; {{search_item.appfee}}</p>
+            <p><span>Duration:</span> &nbsp; {{search_item.duration}}</p>
+            <p><span>App. Start date:</span> &nbsp; {{search_item.duration}}</p>
+            <p><span>App. Deadline:</span> &nbsp; {{search_item.duration}}</p>
+            <p>
+              <span>URL:</span>
+              <a href="{{search_item.app_url}}"
+                >{{search_item.app_short_url}}</a
+              >
+            </p>
+            <a href="/details/{{search_item.id}}" class="view-btn"
+              >View Details</a
+            >
+          </h3>
+        </div>
+      </div>
+    </div>
+    {% endfor %} {% else %}
+    <div class="title">
+      No matching result or input search field
+      <!-- <a href="/sch_post" class="btn">View All</a> -->
+    </div>
+    {% endif %}
+  </div>
+
+  {% if searchResult %}
+
+  <div class="pagination-div">
+    <a
+      href="{{url_for('m_search.search_result', page=searchResult.prev_num)}}"
+      class="pagination-btn inactive-btn {% if searchResult.page == 1 %}disabled{% endif %}"
+    >
+      &laquo;</a
+    >
+    {% for page_num in searchResult.iter_pages (left_edge=1, right_edge=1,
+    left_current=1, right_current=2) %} {% if page_num %} {% if
+    searchResult.page== page_num %}
+    <a
+      href="{{url_for('m_search.search_result', page=page_num)}}"
+      class="pagination-btn active-btn"
+      >{{page_num}}</a
+    >
+
+    {% else %}
+    <a
+      href="{{ url_for('m_search.search_result', page=page_num) }}"
+      class="pagination-btn inactive-btn"
+    >
+      {{ page_num }}
+    </a>
+    {% endif %} {% else %} ... {% endif %} {% endfor %}
+    <a
+      href="{{ url_for('m_search.search_result', page=searchResult.next_num) }}"
+      class="pagination-btn inactive-btn {% if searchResult.page == searchResult.pages %}disabled{% endif %}"
+    >
+      &raquo;
+    </a>
+    <p class="pagination-descr">
+      Showing page {{ searchResult.page }} of {{ searchResult.pages }}
+    </p>
+  </div>
+  {% else %}
+  <div class="pagination-div"></div>
+  {% endif %}
+</section>
+{% endblock %}

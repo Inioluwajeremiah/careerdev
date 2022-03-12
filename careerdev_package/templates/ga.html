@@ -1,0 +1,78 @@
+{% extends "base.html" %} {% block title %}CareerDev | GA{% endblock %} {% block
+content %}
+
+<section class="_section" id="ga">
+  <div class="title">
+    <h2 class="titleText"><span>GA</span></h2>
+    <p>Get the latest update on Graduate Assistentship</p>
+  </div>
+  <div class="content">
+    {% for ga_post in grad_assistantships.items %}
+    <div class="box">
+      <div class="imgBx">
+        <div class="text">
+          <h3>
+            <span class="box-title">{{ga_post.title}}</span> <br />
+            <p><span>Country:</span> &nbsp; {{ga_post.country}}</p>
+            <p><span>Institution:</span> &nbsp; {{ga_post.institution}}</p>
+            <p><span>Course:</span> &nbsp; {{ga_post.course}}</p>
+            <p><span>Level:</span> &nbsp; {{ga_post.level}}</p>
+            <p><span>App. fee:</span> &nbsp; {{ga_post.appfee}}</p>
+            <p><span>Duration:</span> &nbsp; {{ga_post.duration}}</p>
+            <p><span>App. Start date:</span> &nbsp; {{ga_post.duration}}</p>
+            <p><span>App. Deadline:</span> &nbsp; {{ga_post.duration}}</p>
+            <p>
+              <span>URL:</span>
+              <a href="{{ga_post.app_url}}">{{ga_post.app_short_url}}</a>
+            </p>
+            <a href="/grad_ast/details/{{ga_post.id}}" class="view-btn"
+              >View Details</a
+            >
+          </h3>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    <div class="title">
+      <!-- <a href="department.html" class="btn">View All</a> -->
+    </div>
+  </div>
+
+  <div class="pagination-div">
+    <a
+      href="{{url_for('ga_ast.all_ga_post', page=grad_assistantships.prev_num)}}"
+      class="pagination-btn inactive-btn {% if grad_assistantships.page == 1 %}disabled{% endif %}"
+    >
+      &laquo;</a
+    >
+    {% for page_num in grad_assistantships.iter_pages (left_edge=1,
+    right_edge=1, left_current=1, right_current=2) %} {% if page_num %} {% if
+    grad_assistantships.page== page_num %}
+    <a
+      href="{{url_for('ga_ast.all_ga_post', page=page_num)}}"
+      class="pagination-btn active-btn"
+      >{{page_num}}</a
+    >
+
+    {% else %}
+    <a
+      href="{{ url_for('ga_ast.all_ga_post', page=page_num) }}"
+      class="pagination-btn inactive-btn"
+    >
+      {{ page_num }}
+    </a>
+    {% endif %} {% else %} ... {% endif %} {% endfor %}
+    <a
+      href="{{ url_for('ga_ast.all_ga_post', page=grad_assistantships.next_num) }}"
+      class="pagination-btn inactive-btn {% if grad_assistantships.page == grad_assistantships.pages %}disabled{% endif %}"
+    >
+      &raquo;
+    </a>
+    <p class="pagination-descr">
+      Showing page {{ grad_assistantships.page }} of {{
+      grad_assistantships.pages }}
+    </p>
+  </div>
+</section>
+
+{% endblock %}

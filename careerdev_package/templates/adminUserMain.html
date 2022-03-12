@@ -1,0 +1,92 @@
+{% extends "adminTopBase.html" %} {% block content %}
+<link rel="stylesheet" href="../static/base.css" />
+<div class="filter-div" id="filter-div">
+  <form action="/search" method="POST" class="filter-sub-div">
+    <input
+      type="text"
+      name="adtu-search-text"
+      placeholder="Search by username"
+    />
+    <input type="submit" value="Search" name="adtu-search" />
+  </form>
+</div>
+<p class="wlc-text">Welcome <br />{{ current_user.username }}</p>
+<p class="sub-title">Admin Records</p>
+
+{% if adminRecords %}
+<table id="admin-scholarship-table">
+  <thead>
+    <tr>
+      <th>S/N</th>
+      <th>username</th>
+      <th>useremail</th>
+      <th>Password</th>
+      <th>Delete</th>
+      <th>Date created</th>
+      <th>Date updated</th>
+    </tr>
+  </thead>
+  <tbody id="admin-table-body">
+    {% for adm_data in adminRecords.items %}
+    <tr>
+      <td>{{adm_data.id}}</td>
+      <td>{{adm_data.username}}</td>
+      <td>{{adm_data.useremail}}</td>
+      <td>{{adm_data.password}}</td>
+      <td>{{adm_data.date_created}}</td>
+      <td>{{adm_data.date_updated}}</td>
+      <td>
+        <button class="edit-btn table-btn">
+          <a
+            href="/84bd27f938b67f470da3231c14b3448f/adt_users/edit{{adm_data.id}}"
+            >Edit</a
+          >
+        </button>
+        <br />
+        <button class="delete-btn table-btn">
+          <a
+            href="/84bd27f938b67f470da3231c14b3448f/adt_users/delete{{adm_data.id}}"
+            >Del</a
+          >
+        </button>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %} No data available {% endif %}
+<div class="pagination-div">
+  <a
+    href="{{url_for('admintop.adtUserRecords', page=adminRecords.prev_num)}}"
+    class="pagination-btn inactive-btn {% if adminRecords.page == 1 %}disabled{% endif %}"
+  >
+    &laquo;</a
+  >
+  {% for page_num in adminRecords.iter_pages (left_edge=1, right_edge=1,
+  left_current=1, right_current=2) %} {% if page_num %} {% if
+  adminRecords.page== page_num %}
+  <a
+    href="{{url_for('admintop.adtUserRecords', page=page_num)}}"
+    class="pagination-btn active-btn"
+    >{{page_num}}</a
+  >
+
+  {% else %}
+  <a
+    href="{{ url_for('admintop.adtUserRecords', page=page_num) }}"
+    class="pagination-btn inactive-btn"
+  >
+    {{ page_num }}
+  </a>
+  {% endif %} {% else %} ... {% endif %} {% endfor %}
+  <a
+    href="{{ url_for('admintop.adtUserRecords', page=adminRecords.next_num) }}"
+    class="pagination-btn inactive-btn {% if adminRecords.page == adminRecords.pages %}disabled{% endif %}"
+  >
+    &raquo;
+  </a>
+  <p class="pagination-descr">
+    Showing page {{ adminRecords.page }} of {{ adminRecords.pages }}
+  </p>
+</div>
+{% endblock %}

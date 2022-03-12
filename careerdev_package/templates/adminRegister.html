@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Register New User{% endblock %}
+{% block content %}
+
+<form  action="/register" method="POST" class="contactForm" id="contact-form" enctype=multipart/form-data>
+    <p class="sub-title">Register New Admin</p>
+<div class="inputBox">
+    {% if username %}
+    <input type="text" value="{{username}}" name="adname" placeholder="Username" id="username" />
+    {% else %}
+    <input type="text" name="adname" placeholder="Username" id="username" />
+    {% endif %}
+</div>
+<div class="inputBox">
+    {% if useremail %}
+    <input type="email" value="{{useremail}}" name="email" placeholder="Email" id="email" />
+    {% else %}
+    <input type="email" name="email" placeholder="Email" id="email" />
+    {% endif %}
+</div>
+<div class="inputBox">
+    <input type="password" name="adpass" placeholder="Password" id="password" />
+</div>
+<div class="inputBox">
+    <input type="password" name="cadpass" placeholder="Confirm Password" id="cpassword" />
+</div>
+<br>
+<div class="inputBox">
+    <input type="submit" value="Register" name="adregister" />
+</div> <br>
+<div class="inputBox">
+    <p>Already registered? <a href="/login">Login here</a> </p>
+</div>
+                        
+</form> 
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "adminTopBase.html" %} {% block content %}
+<p class="wlc-text">Welcome <br />{{ current_user.username }}</p>
+<p class="sub-title success-message sms">Search results</p>
+
+<table id="admin-scholarship-table">
+  <thead>
+    <tr>
+      <th>S/N</th>
+      <th>username</th>
+      <th>useremail</th>
+      <th>Password</th>
+      <th>Delete</th>
+      <th>Date created</th>
+      <th>Date updated</th>
+    </tr>
+  </thead>
+  <tbody id="admin-table-body">
+    {% for sud_data in searchUsers %}
+    <tr>
+      <td>{{sud_data.id}}</td>
+      <td>{{sud_data.username}}</td>
+      <td>{{sud_data.useremail}}</td>
+      <td>{{sud_data.password}}</td>
+      <td>{{sud_data.date_created}}</td>
+      <td>{{sud_data.date_updated}}</td>
+      <td>
+        <button class="edit-btn table-btn">
+          <a
+            href="/84bd27f938b67f470da3231c14b3448f/adt_users/edit{{sud_data.id}}"
+            >Edit</a
+          >
+        </button>
+        <br />
+        <button class="edit-btn table-btn">
+          <a
+            href="/84bd27f938b67f470da3231c14b3448f/adt_users/delete{{sud_data.id}}"
+            >Edit</a
+          >
+        </button>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

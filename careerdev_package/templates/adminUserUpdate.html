@@ -1,0 +1,25 @@
+{% extends "adminTopBase.html" %}
+{% block content %}
+
+<form  action="/ad_register" method="POST" class="contactForm" id="contact-form" enctype=multipart/form-data>
+    <p class="sub-title">Update Record</p>
+    <div class="inputBox">
+        <input type="text" value="{{edit_record.username}}" name="adtu-name" placeholder="Username" id="username" />
+    </div>
+    <div class="inputBox">
+        <input type="email" value="{{edit_record.useremail}}" name="adtu-email" placeholder="Email" id="email" />
+    </div>
+    <div class="inputBox">
+        <input type="password" value="{{edit_record.password}}" name="adtu-pass" placeholder="Password" id="password" />
+    </div>
+    <div class="inputBox">
+        <input type="password" value="{{edit_record.password}}" name="adtu-pass" placeholder="Confirm Password" id="cpassword" />
+    </div>
+    <br>
+    <div class="inputBox">
+        <input type="submit" value="Update" name="adtu-update" />
+    </div> <br>
+                        
+</form> 
+
+{% endblock %}

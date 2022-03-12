@@ -1,0 +1,86 @@
+{% extends "base.html" %} {% block title %}CareerDev | Article details {%
+endblock %} {% block content %}
+
+<section class="_section details-div" id="scholarships">
+  <div class="title white" id="sch-title">
+    <h2 class="titleText"><span>I</span>nternships</h2>
+    <p>Get the latest update on Internship opportunities</p>
+    <p><span>Visits:</span> &nbsp; {{singlePost.visits}}</p>
+  </div>
+
+  <div class="post-details">
+    <p>
+      <center><span class="box-title">{{singlePost.title}}</span></center>
+    </p>
+    <p><span>subtitle</span> &nbsp; {{singlePost.subtitle}}</p>
+    <p><span>Country:</span> &nbsp; {{singlePost.country}}</p>
+    <p><span>Institution:</span> &nbsp; {{singlePost.institution}}</p>
+    <p><span>Faculty</span> &nbsp; {{singlePost.faculty}}</p>
+    <p><span>Department:</span> &nbsp; {{singlePost.department}}</p>
+    <p><span>Course:</span> &nbsp; {{singlePost.course}}</p>
+    <p><span>Level:</span> &nbsp; {{singlePost.level}}</p>
+    <p class="description">
+      <span>Description</span> &nbsp; {{singlePost.description}}
+    </p>
+    <p><span>Duration:</span> &nbsp; {{singlePost.duration}}</p>
+    <p><span>App. fee:</span> &nbsp; {{singlePost.appfee}}</p>
+    <p><span>Funding type:</span> &nbsp; {{singlePost.fund_type}}</p>
+    <p><span>Funding Institution:</span> &nbsp; {{singlePost.fund_inst}}</p>
+    <p class="startdate">
+      <span>App. Start date:</span> &nbsp; {{singlePost.app_sd}}
+    </p>
+    <p class="deadline">
+      <span>App. Deadline:</span> &nbsp; {{singlePost.app_ed}}
+    </p>
+    <p>
+      <span>App. URL:</span> &nbsp;
+      <a href="{{singlePost.app_url}}">{{singlePost.app_short_url}}</a>
+    </p>
+  </div>
+
+  <div class="related-post">
+    <div class="title white" id="sch-title">
+      <h2 class="titleText">View related posts</h2>
+    </div>
+    <div class="content">
+      {% if related_posts %} {% for related_post in related_posts %}
+      <div class="box">
+        <div class="imgBx">
+          <div class="text">
+            <h3>
+              <span class="box-title">{{related_post.title}}</span> <br />
+              <p><span>Country:</span> &nbsp; {{related_post.country}}</p>
+              <p>
+                <span>Institution:</span> &nbsp; {{related_post.institution}}
+              </p>
+              <p><span>Course:</span> &nbsp; {{related_post.course}}</p>
+              <p><span>Level:</span> &nbsp; {{related_post.level}}</p>
+              <p><span>App. fee:</span> &nbsp; {{related_post.appfee}}</p>
+              <p><span>Duration:</span> &nbsp; {{related_post.duration}}</p>
+              <p>
+                <span>App. Start date:</span> &nbsp; {{related_post.duration}}
+              </p>
+              <p>
+                <span>App. Deadline:</span> &nbsp; {{related_post.duration}}
+              </p>
+              <p>
+                <span>URL:</span>
+                <a href="{{related_post.app_url}}"
+                  >{{related_post.app_short_url}}</a
+                >
+              </p>
+              <a href="/intern/details/{{related_post.id}}" class="view-btn"
+                >View Details</a
+              >
+            </h3>
+          </div>
+        </div>
+      </div>
+      {% endfor %} {% else %} No related post {% endif %}
+      <!--ends boc div-->
+    </div>
+  </div>
+  <!--ends related post-->
+</section>
+
+{% endblock%}
