@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import Blueprint, app, flash
 from flask.json import jsonify
 from flask import render_template, request, url_for, redirect
@@ -11,7 +12,7 @@ from .models import User, PostModel
 views = Blueprint('views', __name__)
 
 
-@views.route('/')
+@views.route('/', methods=['GET'])
 def dataPage():
     # return redirect(request.url)
     # allRecords = PostModel.query.all()
