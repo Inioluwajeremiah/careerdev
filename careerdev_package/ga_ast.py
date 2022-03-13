@@ -4,10 +4,10 @@ from flask_login import login_required, current_user
 
 ga_ast = Blueprint('ga_ast', __name__)
 
-@ga_ast.route('/grad_ast')
+@ga_ast.route('/graduateasst')
 def all_ga_post():
 
-    rows_per_page = 5
+    rows_per_page = 10
     page = request.args.get('page', 1, type=int)
     # grad_assistantships = PostModel.query.paginate(page=page, per_page = rows_per_page )
     grad_assistantship = PostModel.query.filter_by(post_cat='Graduate Assistantship')
@@ -20,9 +20,25 @@ def all_ga_post():
     # grad_assistantship = PostModel.query.filter_by(post_cat='Graduate Assistantship').all()
     return render_template('ga.html', grad_assistantships = grad_assistantships, user=current_user)
 
+@ga_ast.route('/graduateassist/details')
+def details_all_ga_post():
+
+    rows_per_page = 1
+    page = request.args.get('page', 1, type=int)
+    # grad_assistantships = PostModel.query.paginate(page=page, per_page = rows_per_page )
+    grad_assistantship = PostModel.query.filter_by(post_cat='Graduate Assistantship')
+    grad_assistantships = grad_assistantship.paginate(page=page, per_page=rows_per_page )
+    if not grad_assistantships:
+        # return render_template('scholarship.html', user=current_user)
+        flash("No recent posts", category="error")
+        return render_template('gaDetails2.html', user=current_user)
+    
+    return render_template('gaDetails2.html', grad_assistantships=grad_assistantships, user=current_user)
+    
+    
 
 
-@ga_ast.get("/grad_ast/details/<id>")
+@ga_ast.get("/graduateasst/details/<id>")
 def getSchPage(id):
 
     int_id = int(id)

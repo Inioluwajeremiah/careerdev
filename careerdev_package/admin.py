@@ -35,41 +35,41 @@ def addNewPosts():
             app_ed = request.form.get('app_ed')
             
             if not post_cat:
-                flash("Fill Post cat. field appropriately", category='success')
+                flash("Fill Post cat. field appropriately", category='error')
             elif len(title) < 2:
-                flash("Fill title field appropriately", category='success')
+                flash("Fill title field appropriately", category='error')
             elif ga == "":
-                flash("Fill GA field appropriately", category='success')
+                flash("Fill GA field appropriately", category='error')
             elif len(subtitle) < 2:
-                flash("Fill subtitle field appropriately", category='success')
+                flash("Fill subtitle field appropriately", category='error')
             elif len(country) < 2:
-                flash("Fill country field appropriately", category='success')
+                flash("Fill country field appropriately", category='error')
             elif len(institution) < 2:
-                flash("Fill institution field appropriately", category='success')
+                flash("Fill institution field appropriately", category='error')
             elif len(faculty) < 2:
-                flash("Fill faculty field appropriately", category='success')
+                flash("Fill faculty field appropriately", category='error')
             elif len(department) < 2:
-                flash("Fill department field appropriately", category='success')
+                flash("Fill department field appropriately", category='error')
             elif len(course) < 2:
-                flash("Fill course field appropriately", category='success')
+                flash("Fill course field appropriately", category='error')
             elif len(level) < 2:
-                flash("Fill level field appropriately", category='success')
+                flash("Fill level field appropriately", category='error')
             elif len(description) < 2:
-                flash("Fill description field appropriately", category='success')
+                flash("Fill description field appropriately", category='error')
             elif len(duration) < 2:
-                flash("Fill duration field appropriately", category='success')
+                flash("Fill duration field appropriately", category='error')
             elif appfee == "":
-                flash("Fill appfee field appropriately", category='success')
+                flash("Fill appfee field appropriately", category='error')
             elif len(app_url) < 2:
-                flash("Fill url field appropriately", category='success')
+                flash("Fill url field appropriately", category='error')
             elif len(fund_type)< 5:
-                flash("Fill fund_type field appropriately", category='success')
+                flash("Fill fund_type field appropriately", category='error')
             elif fund_inst == "":
-                flash("Fill funding institution field appropriately", category='success')
+                flash("Fill funding institution field appropriately", category='error')
             elif not app_sd:
-                flash("Fill application start date field appropriately", category='success')
+                flash("Fill application start date field appropriately", category='error')
             elif not app_ed:
-                flash("Fill application end date field appropriately", category='success')
+                flash("Fill application end date field appropriately", category='error')
             else:
                
                 newPosts = PostModel(ga=ga, post_cat=post_cat, title=title, subtitle=subtitle, country=country,

@@ -5,20 +5,25 @@ from flask_login import login_required, current_user
 
 post_doc = Blueprint('post_doc', __name__)
 
-@post_doc.route('/post_doc')
+@post_doc.route('/postdoc')
 def all_post_doc_posts():
-    rows_per_page = 5
+    rows_per_page = 10
     page = request.args.get('page', 1, type=int)
     # post_doc_posts = PostModel.query.paginate(page=page, per_page = rows_per_page )
     post_doc_post = PostModel.query.filter_by(post_cat='Post Doc')
     post_doc_posts = post_doc_post.paginate(page=page, per_page=rows_per_page )
-    if not post_doc_posts:
-        # return render_template('scholarship.html', user=current_user)
-        flash("No recent posts", category="error")
-    else:
-        return render_template('post_doc.html', post_doc_posts=post_doc_posts, user=current_user)
+   
     return render_template('post_doc.html', post_doc_posts=post_doc_posts, user=current_user)
 
+@post_doc.route('/postdoc/details')
+def all_post_doc_details():
+    rows_per_page = 1
+    page = request.args.get('page', 1, type=int)
+    # post_doc_posts = PostModel.query.paginate(page=page, per_page = rows_per_page )
+    post_doc_detail = PostModel.query.filter_by(post_cat='Post Doc')
+    post_doc_details = post_doc_detail.paginate(page=page, per_page=rows_per_page )
+   
+    return render_template('postDocAllDetails.html', post_doc_details=post_doc_details, user=current_user)
 
 
 @post_doc.get("/post_doc/details/<id>")

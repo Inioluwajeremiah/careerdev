@@ -3,39 +3,45 @@ endblock %} {% block content %}
 
 <section class="_section details-div" id="scholarships">
   <div class="title white" id="sch-title">
-    <h2 class="titleText"><span>GA</span></h2>
-    <p>Get the latest update on Graduate Assistentship</p>
-    <p><span>Visits:</span> &nbsp; {{singlePost.visits}}</p>
+    <h2 class="titleText"><span>S</span>cholarships</h2>
+    <p>Get the latest update on scholarship opportunities</p>
+
+    {% if sch_details%} {% for sch_detail in sch_details%}
+    <p><span>Visits:</span> &nbsp; {{sch_detail.visits}}</p>
   </div>
 
   <div class="post-details">
+    {% if post_doc_posts %} {% for singlePOst in post_doc_posts %}
     <p>
-      <center><span class="box-title">{{singlePost.title}}</span></center>
+      <center><span class="box-title">{{sch_detail.title}}</span></center>
     </p>
-    <p><span>subtitle</span> &nbsp; {{singlePost.subtitle}}</p>
-    <p><span>Country:</span> &nbsp; {{singlePost.country}}</p>
-    <p><span>Institution:</span> &nbsp; {{singlePost.institution}}</p>
-    <p><span>Faculty</span> &nbsp; {{singlePost.faculty}}</p>
-    <p><span>Department:</span> &nbsp; {{singlePost.department}}</p>
-    <p><span>Course:</span> &nbsp; {{singlePost.course}}</p>
-    <p><span>Level:</span> &nbsp; {{singlePost.level}}</p>
+    <p><span>subtitle</span> &nbsp; {{sch_detail.subtitle}}</p>
+    <p><span>Country:</span> &nbsp; {{sch_detail.country}}</p>
+    <p><span>Institution:</span> &nbsp; {{sch_detail.institution}}</p>
+    <p><span>Faculty</span> &nbsp; {{sch_detail.faculty}}</p>
+    <p><span>Department:</span> &nbsp; {{sch_detail.department}}</p>
+    <p><span>Course:</span> &nbsp; {{sch_detail.course}}</p>
+    <p><span>Level:</span> &nbsp; {{sch_detail.level}}</p>
     <p class="description">
-      <span>Description</span> &nbsp; {{singlePost.description}}
+      <span>Description</span> &nbsp; {{sch_detail.description}}
     </p>
-    <p><span>Duration:</span> &nbsp; {{singlePost.duration}}</p>
-    <p><span>App. fee:</span> &nbsp; {{singlePost.appfee}}</p>
-    <p><span>Funding type:</span> &nbsp; {{singlePost.fund_type}}</p>
-    <p><span>Funding Institution:</span> &nbsp; {{singlePost.fund_inst}}</p>
+    <p><span>Duration:</span> &nbsp; {{sch_detail.duration}}</p>
+    <p><span>App. fee:</span> &nbsp; {{sch_detail.appfee}}</p>
+    <p><span>Funding type:</span> &nbsp; {{sch_detail.fund_type}}</p>
+    <p><span>Funding Institution:</span> &nbsp; {{sch_detail.fund_inst}}</p>
     <p class="startdate">
-      <span>App. Start date:</span> &nbsp; {{singlePost.app_sd}}
+      <span>App. Start date:</span> &nbsp; {{sch_detail.app_sd}}
     </p>
     <p class="deadline">
-      <span>App. Deadline:</span> &nbsp; {{singlePost.app_ed}}
+      <span>App. Deadline:</span> &nbsp; {{sch_detail.app_ed}}
     </p>
     <p>
       <span>App. URL:</span> &nbsp;
-      <a href="{{singlePost.app_url}}">{{singlePost.app_short_url}}</a>
+      <a href="{{sch_detail.app_url}}">{{sch_detail.app_short_url}}</a>
     </p>
+    {% end for %} {%else %}
+    <p>Data not available</p>
+    {% endif %}
   </div>
 
   <div class="related-post">
@@ -69,7 +75,7 @@ endblock %} {% block content %}
                   >{{related_post.app_short_url}}</a
                 >
               </p>
-              <a href="/details/{{related_post.id}}" class="view-btn"
+              <a href="/scholarhip/details/{{related_post.id}}" class="view-btn"
                 >View Details</a
               >
             </h3>
@@ -84,37 +90,36 @@ endblock %} {% block content %}
 
   <div class="pagination-div">
     <a
-      href="{{url_for('ga_ast.all_ga_post', page=grad_assistantships.prev_num)}}"
-      class="pagination-btn inactive-btn {% if grad_assistantships.page == 1 %}disabled{% endif %}"
+      href="{{url_for('sch_post.all_sch_details', page=sch_details.prev_num)}}"
+      class="pagination-btn inactive-btn {% if sch_details.page == 1 %}disabled{% endif %}"
     >
       &laquo;</a
     >
-    {% for page_num in grad_assistantships.iter_pages (left_edge=1,
-    right_edge=1, left_current=1, right_current=2) %} {% if page_num %} {% if
-    grad_assistantships.page== page_num %}
+    {% for page_num in sch_details.iter_pages (left_edge=1, right_edge=1,
+    left_current=1, right_current=2) %} {% if page_num %} {% if
+    sch_details.page== page_num %}
     <a
-      href="{{url_for('ga_ast.all_ga_post', page=page_num)}}"
+      href="{{url_for('sch_post.all_sch_details', page=page_num)}}"
       class="pagination-btn active-btn"
       >{{page_num}}</a
     >
 
     {% else %}
     <a
-      href="{{ url_for('ga_ast.all_ga_post', page=page_num) }}"
+      href="{{ url_for('sch_post.all_sch_details', page=page_num) }}"
       class="pagination-btn inactive-btn"
     >
       {{ page_num }}
     </a>
     {% endif %} {% else %} ... {% endif %} {% endfor %}
     <a
-      href="{{ url_for('ga_ast.all_ga_post', page=grad_assistantships.next_num) }}"
-      class="pagination-btn inactive-btn {% if grad_assistantships.page == grad_assistantships.pages %}disabled{% endif %}"
+      href="{{ url_for('sch_post.all_sch_details', page=sch_details.next_num) }}"
+      class="pagination-btn inactive-btn {% if sch_details.page == sch_details.pages %}disabled{% endif %}"
     >
       &raquo;
     </a>
     <p class="pagination-descr">
-      Showing page {{ grad_assistantships.page }} of {{
-      grad_assistantships.pages }}
+      Showing page {{ sch_details.page }} of {{ sch_details.pages }}
     </p>
   </div>
 </section>

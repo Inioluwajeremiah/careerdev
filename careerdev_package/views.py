@@ -1,4 +1,3 @@
-from crypt import methods
 from flask import Blueprint, app, flash
 from flask.json import jsonify
 from flask import render_template, request, url_for, redirect

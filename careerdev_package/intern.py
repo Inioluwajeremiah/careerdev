@@ -4,25 +4,31 @@ from flask_login import login_required, current_user
 
 intern = Blueprint('intern', __name__)
 
-@intern.route('/intern')
+@intern.route('/internship')
 def all_intern_post():
 
-    rows_per_page = 5
+    rows_per_page = 10
     page = request.args.get('page', 1, type=int)
     # intern_posts = PostModel.query.paginate(page=page, per_page = rows_per_page )
     intern_post = PostModel.query.filter_by(post_cat='Internship')
     intern_posts = intern_post.paginate(page=page, per_page=rows_per_page )
-    if not intern_posts:
-        # return render_template('scholarship.html', user=current_user)
-        flash("No recent posts", category="error")
-    else:
-        return render_template('intern.html', intern_posts=intern_posts, user=current_user)
-    # intern_posts = PostModel.query.filter_by(post_cat='Internship').all()
     return render_template('intern.html', intern_posts=intern_posts, user=current_user)
 
 
+@intern.route('/internship/details')
+def all_intern_details():
 
-@intern.get("/intern/details/<id>")
+    rows_per_page = 1
+    page = request.args.get('page', 1, type=int)
+    # intern_posts = PostModel.query.paginate(page=page, per_page = rows_per_page )
+    intern_detail = PostModel.query.filter_by(post_cat='Internship')
+    intern_details = intern_detail.paginate(page=page, per_page=rows_per_page )
+    
+    return render_template('intern.html', intern_details=intern_details, user=current_user)
+
+
+
+@intern.get("/internship/details/<id>")
 def getInternPage(id):
 
     int_id = int(id)

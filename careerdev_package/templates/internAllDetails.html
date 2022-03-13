@@ -3,39 +3,40 @@ endblock %} {% block content %}
 
 <section class="_section details-div" id="scholarships">
   <div class="title white" id="sch-title">
-    <h2 class="titleText"><span>GA</span></h2>
-    <p>Get the latest update on Graduate Assistentship</p>
-    <p><span>Visits:</span> &nbsp; {{singlePost.visits}}</p>
+    <h2 class="titleText"><span>I</span>nternships</h2>
+    <p>Get the latest update on Internship opportunities</p>
+    {% if intern_details%} {% for itd in intern_details %}
+    <p><span>Visits:</span> &nbsp; {{itd.visits}}</p>
   </div>
 
   <div class="post-details">
     <p>
-      <center><span class="box-title">{{singlePost.title}}</span></center>
+      <center><span class="box-title">{{itd.title}}</span></center>
     </p>
-    <p><span>subtitle</span> &nbsp; {{singlePost.subtitle}}</p>
-    <p><span>Country:</span> &nbsp; {{singlePost.country}}</p>
-    <p><span>Institution:</span> &nbsp; {{singlePost.institution}}</p>
-    <p><span>Faculty</span> &nbsp; {{singlePost.faculty}}</p>
-    <p><span>Department:</span> &nbsp; {{singlePost.department}}</p>
-    <p><span>Course:</span> &nbsp; {{singlePost.course}}</p>
-    <p><span>Level:</span> &nbsp; {{singlePost.level}}</p>
+    <p><span>subtitle</span> &nbsp; {{itd.subtitle}}</p>
+    <p><span>Country:</span> &nbsp; {{itd.country}}</p>
+    <p><span>Institution:</span> &nbsp; {{itd.institution}}</p>
+    <p><span>Faculty</span> &nbsp; {{itd.faculty}}</p>
+    <p><span>Department:</span> &nbsp; {{itd.department}}</p>
+    <p><span>Course:</span> &nbsp; {{itd.course}}</p>
+    <p><span>Level:</span> &nbsp; {{itd.level}}</p>
     <p class="description">
-      <span>Description</span> &nbsp; {{singlePost.description}}
+      <span>Description</span> &nbsp; {{itd.description}}
     </p>
-    <p><span>Duration:</span> &nbsp; {{singlePost.duration}}</p>
-    <p><span>App. fee:</span> &nbsp; {{singlePost.appfee}}</p>
-    <p><span>Funding type:</span> &nbsp; {{singlePost.fund_type}}</p>
-    <p><span>Funding Institution:</span> &nbsp; {{singlePost.fund_inst}}</p>
-    <p class="startdate">
-      <span>App. Start date:</span> &nbsp; {{singlePost.app_sd}}
-    </p>
-    <p class="deadline">
-      <span>App. Deadline:</span> &nbsp; {{singlePost.app_ed}}
-    </p>
+    <p><span>Duration:</span> &nbsp; {{itd.duration}}</p>
+    <p><span>App. fee:</span> &nbsp; {{itd.appfee}}</p>
+    <p><span>Funding type:</span> &nbsp; {{itd.fund_type}}</p>
+    <p><span>Funding Institution:</span> &nbsp; {{itd.fund_inst}}</p>
+    <p class="startdate"><span>App. Start date:</span> &nbsp; {{itd.app_sd}}</p>
+    <p class="deadline"><span>App. Deadline:</span> &nbsp; {{itd.app_ed}}</p>
     <p>
       <span>App. URL:</span> &nbsp;
-      <a href="{{singlePost.app_url}}">{{singlePost.app_short_url}}</a>
+      <a href="{{itd.app_url}}">{{itd.app_short_url}}</a>
     </p>
+
+    {% endfor %} {% else %}
+    <p>Data not available</p>
+    {% endif %}
   </div>
 
   <div class="related-post">
@@ -69,7 +70,7 @@ endblock %} {% block content %}
                   >{{related_post.app_short_url}}</a
                 >
               </p>
-              <a href="/details/{{related_post.id}}" class="view-btn"
+              <a href="/intern/details/{{related_post.id}}" class="view-btn"
                 >View Details</a
               >
             </h3>
@@ -84,37 +85,36 @@ endblock %} {% block content %}
 
   <div class="pagination-div">
     <a
-      href="{{url_for('ga_ast.all_ga_post', page=grad_assistantships.prev_num)}}"
-      class="pagination-btn inactive-btn {% if grad_assistantships.page == 1 %}disabled{% endif %}"
+      href="{{url_for('intern.all_intern_post', page=intern_posts.prev_num)}}"
+      class="pagination-btn inactive-btn {% if intern_posts.page == 1 %}disabled{% endif %}"
     >
       &laquo;</a
     >
-    {% for page_num in grad_assistantships.iter_pages (left_edge=1,
-    right_edge=1, left_current=1, right_current=2) %} {% if page_num %} {% if
-    grad_assistantships.page== page_num %}
+    {% for page_num in intern_posts.iter_pages (left_edge=1, right_edge=1,
+    left_current=1, right_current=2) %} {% if page_num %} {% if
+    intern_posts.page== page_num %}
     <a
-      href="{{url_for('ga_ast.all_ga_post', page=page_num)}}"
+      href="{{url_for('intern.all_intern_post', page=page_num)}}"
       class="pagination-btn active-btn"
       >{{page_num}}</a
     >
 
     {% else %}
     <a
-      href="{{ url_for('ga_ast.all_ga_post', page=page_num) }}"
+      href="{{ url_for('intern.all_intern_post', page=page_num) }}"
       class="pagination-btn inactive-btn"
     >
       {{ page_num }}
     </a>
     {% endif %} {% else %} ... {% endif %} {% endfor %}
     <a
-      href="{{ url_for('ga_ast.all_ga_post', page=grad_assistantships.next_num) }}"
-      class="pagination-btn inactive-btn {% if grad_assistantships.page == grad_assistantships.pages %}disabled{% endif %}"
+      href="{{ url_for('intern.all_intern_post', page=intern_posts.next_num) }}"
+      class="pagination-btn inactive-btn {% if intern_posts.page == intern_posts.pages %}disabled{% endif %}"
     >
       &raquo;
     </a>
     <p class="pagination-descr">
-      Showing page {{ grad_assistantships.page }} of {{
-      grad_assistantships.pages }}
+      Showing page {{ intern_posts.page }} of {{ intern_posts.pages }}
     </p>
   </div>
 </section>

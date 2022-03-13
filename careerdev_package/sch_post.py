@@ -5,22 +5,31 @@ from flask_login import login_required, current_user
 
 sch_post = Blueprint('sch_post', __name__)
 
-@sch_post.route('/sch_post')
+@sch_post.route('/scholarship')
 def all_sch_post():
-    rows_per_page = 5
+    rows_per_page = 10
     page = request.args.get('page', 1, type=int)
     # allSchPost = PostModel.query.paginate(page=page, per_page = rows_per_page )
     allSch_Post = PostModel.query.filter_by(post_cat='Scholarship')
     allSchPost = allSch_Post.paginate(page=page, per_page=rows_per_page )
+    
+    return render_template('scholarship.html', allSchPosts = allSchPost, user=current_user)
+
+@sch_post.route('/scholarship/details')
+def all_sch_destails():
+    rows_per_page = 1
+    page = request.args.get('page', 1, type=int)
+    scholar_detail = PostModel.query.filter_by(post_cat='Scholarship')
+    sch_details = scholar_detail.paginate(page=page, per_page=rows_per_page )
     # if not allSchPost:
     #     # return render_template('scholarship.html', user=current_user)
     #     flash("No recent posts", category="error")
     # else:
     #     return render_template('scholarship.html', allSchPosts=allSchPost, user=current_user)
-    return render_template('scholarship.html', allSchPosts = allSchPost, user=current_user)
+    return render_template('scholarship.html', sch_details = sch_details, user=current_user)
 
 
-@sch_post.get("/sch_post/details/<id>")
+@sch_post.get("/scholarship/details/<id>")
 def getSchPage(id):
 
     int_id = int(id)
