@@ -2,7 +2,7 @@ from flask import Flask, redirect
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
-from flask_ckeditor import ckeditor
+# from flask_ckeditor import ckeditor
 from flask_migrate import Migrate
 
 # db = SQLAlchemy(session_options={"autoflush": False})
@@ -10,15 +10,17 @@ db = SQLAlchemy()
 migrate = Migrate()
 DB_NAME = "careerdev.db"
 
+# f'sqlite:///{DB_NAME}'
+
 
 def create_app():
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = 'eb4ec05be86006dd02d5d85d75d6209a'
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    app.config['SECRET_KEY'] = '026afd0576690d2d355d73c1adcfabd3'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://wnvyldnupudxby:870afaf486c823c724798e5df9ea04b5b86deae769db362ae3b85b468e480f8a@ec2-44-192-245-97.compute-1.amazonaws.com:5432/d8ruv7abci36jl'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
     migrate.init_app(app, db)
-    ckeditor.init_app(app)
+    # ckeditor.init_app(app)
 
     from .views import views
     from .auth import auth
