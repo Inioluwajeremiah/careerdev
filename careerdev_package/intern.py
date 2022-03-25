@@ -28,7 +28,7 @@ def all_intern_details():
 
 
 
-@intern.get("/internship/details/<id>")
+@intern.route("/internship/details/<id>")
 def getInternPage(id):
 
     int_id = int(id)

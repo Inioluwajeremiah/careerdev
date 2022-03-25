@@ -29,7 +29,7 @@ def all_sch_destails():
     return render_template('scholarship.html', sch_details = sch_details, user=current_user)
 
 
-@sch_post.get("/scholarship/details/<id>")
+@sch_post.route("/scholarship/details/<id>")
 def getSchPage(id):
 
     int_id = int(id)

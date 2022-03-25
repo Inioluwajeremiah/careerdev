@@ -38,7 +38,7 @@ def details_all_ga_post():
     
 
 
-@ga_ast.get("/graduateasst/details/<id>")
+@ga_ast.route("/graduateasst/details/<id>")
 def getSchPage(id):
 
     int_id = int(id)

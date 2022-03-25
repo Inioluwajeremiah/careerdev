@@ -48,7 +48,7 @@ def create_app():
     app.register_blueprint(m_search, url_prefix="/")
     app.register_blueprint(m_filter, url_prefix="/")
 
-    @app.get('/<short_url>')
+    @app.route('/<short_url>')
     def redirect_to_url(short_url):
         new_posts = PostModel.query.filter_by(app_short_url=short_url).first_or_404()
 

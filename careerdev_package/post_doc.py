@@ -26,7 +26,7 @@ def all_post_doc_details():
     return render_template('postDocAllDetails.html', post_doc_details=post_doc_details, user=current_user)
 
 
-@post_doc.get('/postdoc/details/<id>')
+@post_doc.route('/postdoc/details/<id>')
 def getPostdoc(id):
 
     int_id = int(id)
