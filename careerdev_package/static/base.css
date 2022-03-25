@@ -765,15 +765,18 @@ footer {
   margin-top: 10px;
 }
 .details-div {
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
 }
 .post-details {
   text-align: left;
-  width: 80%;
+  width: 90%;
   margin: 20px auto;
   box-shadow: 0 5px 20px rgb(0, 0, 0, 0.1);
   padding: 30px;
+}
+.post-details p {
+  padding: 10px;
 }
 .description {
   background: var(--color-wheat);

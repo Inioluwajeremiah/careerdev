@@ -1,4 +1,4 @@
-from flask import Blueprint, app, flash, render_template, request
+from flask import Blueprint, app, flash, redirect, render_template, request, url_for
 from careerdev_package.models import PostModel
 from flask_login import login_required, current_user
 
@@ -26,8 +26,8 @@ def all_post_doc_details():
     return render_template('postDocAllDetails.html', post_doc_details=post_doc_details, user=current_user)
 
 
-@post_doc.get("/post_doc/details/<id>")
-def getInternPage(id):
+@post_doc.get('/postdoc/details/<id>')
+def getPostdoc(id):
 
     int_id = int(id)
     # rpt1= int(id)+1
@@ -54,6 +54,7 @@ def getInternPage(id):
     # rel_sp_6 = PostModel.query.filter_by(id=rpt6).first()
     related_posts = PostModel.query.filter_by(post_cat="Post Doc").filter(PostModel.id.in_(ids)).all()
 
+    # return redirect(url_for('post_doc.getPostdoc',singlePost=singlePost, user=current_user, related_posts=related_posts))
     return render_template('post_docDetails.html', singlePost=singlePost, user=current_user, related_posts=related_posts)
         # rel_sp_1=rel_sp_1,rel_sp_2=rel_sp_2,rel_sp_3=rel_sp_3,rel_sp_4=rel_sp_4,rel_sp_5=rel_sp_5,rel_sp_6=rel_sp_6
 
